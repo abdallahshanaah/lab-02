@@ -1,60 +1,57 @@
-'use strict';
-
-let keywordArray = [];
-let hornArray = [];
-
-function Gallery(value) {
-  this.image_url = value.image_url;
-  this.title = value.title;
-  this.description = value.description;
-  this.keyword = value.keyword;
-  this.horns = value.horns;
-  hornArray.push(this);
-  if (keywordArray.includes(this.keyword) === false) {
-    keywordArray.push(this.keyword);
-  }
-}
-
-
+'use strict ';
+let galeryArray=[];
 
 $.get('./data/page-1.json')
   .then(data => {
-    data.forEach((value) => {
-
-      let gallary1 = new Gallery(value);
-      gallary1.render();
+    data.forEach((val) => {
+      let pic = new Galery(val);
+      pic.renderImg();
     });
-    keywordArray.forEach(value => {
-      list(value);
-    });
-
-  })
-  .then(() => selectlist());
+    renderList();
+    filterBykeyword();
+  });
 
 
-
-Gallery.prototype.render = function () {
-  let sectionClone = $('#photo-template').clone();
-  sectionClone.find('h2').text(this.title);
-  sectionClone.find('img').attr('src', this.image_url);
-  sectionClone.find('p').text(this.description);
-  $('main').append(sectionClone);
-};
-
-function list(value) {
-  let options = $('<option></option>').text(value);
-  $('select').append(options);
+function Galery(val) {
+  this.img_url =val.img_url;
+  this.title = val.title;
+  this.description = val.description;
+  this.keyword =val.keyword;
+  this.horns =val.horns;
+  galeryArray.push(this);
+}
+function renderList () {
+  let allkeywords =[];
+  galeryArray.forEach((val) =>{
+    if(!allkeywords.includes()){
+      allkeywords.push(val.keyword);
+    }
+  });
+  allkeywords.forEach((val) =>{
+    $('#clone').append(`<option value="${val}"> ${val} </option>`);
+  });
 }
 
-function selectlist() {
-  $('select').on('change', function () {
-    let select = $(this).val();
-    console.log(select);
-    let selected =hornArray.filter((value) => value.keyword=== select);
-    console.log(selected);
-    $('section:not(:first)').remove();
-    selected.forEach(value => {
-      value.render() ;
-    });
+
+// render the imeges
+Galery.prototype.renderImg = function () {
+  let galeryClone = $('.photo-template').clone();
+  galeryClone.removeClass('photo-template');
+  galeryClone.find('h2').text(this.title);
+  galeryClone.find('img').attr('src',this.img_url);
+  galeryClone.find('p').text(this.description);
+  galeryClone.attr('class',this.keyword);
+  $('main').append(galeryClone);
+};
+function filterBykeyword() {
+  $('select').on('change',function(){
+    $('section').hide();
+    let selected = $(this).val();
+    $(`.${selected}`).fadeIn();
+    // galeryArray.forEach(val =>{
+    //   if(val.keyword === selected){
+    //     $(`section[class ='${selected}']`).fadeIn(); //or show()
+    //   }
+    // });
   });
 }

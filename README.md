@@ -34,11 +34,11 @@
 
 2. Estimate of time needed to complete: 1:30
 
-3. Start time: 
+3. Start time: 9:00
 
-4. Finish time: 
+4. Finish time: 9:20
 
-5. Actual time needed to complete: not ready 
+5. Actual time needed to complete: not ready 1:00
 
 ****************************************************************************
 ****************************************************************************
