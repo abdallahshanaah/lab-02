@@ -1,17 +1,17 @@
-section{
-    background-color: rgb(34, 76, 189);
-}
-h1 {
-    text-align: center;
+
+select {
+    margin-top: 25px;
+    margin-left: 585px;
 }
 h2 {
-    padding: 2px;
-    text-align: center;
+    padding: 12px;
+    font-size: 21px;
 
 }
 p {
-    text-align: center;
+    padding: 30px;
 }
-#clone{
+img {
+    height: 200px;
+    width: 300px;
 }
-
