@@ -1,17 +1,16 @@
+#showImage div{
+    background-color: #8b5454;
+}
 
-select {
-    margin-top: 25px;
-    margin-left: 585px;
-}
-h2 {
-    padding: 12px;
-    font-size: 21px;
 
-}
-p {
-    padding: 30px;
-}
-img {
-    height: 200px;
+#showImage div{
     width: 300px;
+    height: 420px;
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
+
